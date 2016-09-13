@@ -26,6 +26,8 @@ Plugin 'brookhong/cscope.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'Peeja/vim-cdo'
+Plugin 'godlygeek/tabular'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -76,6 +78,7 @@ noremap <Leader>P "*P
 " window command map
 nnoremap <Leader>w <C-w>
 
+set hidden              " Allow switching away from a changed buffer without saving it
 set showmatch           " Show matching brackets.
 set incsearch           " Incremental search
 set mouse=a             " Enable mouse usage (all modes)
