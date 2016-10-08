@@ -28,6 +28,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'Peeja/vim-cdo'
 Plugin 'godlygeek/tabular'
+Plugin 'bronson/vim-visual-star-search'
+Plugin 'tpope/vim-abolish'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -114,6 +116,17 @@ map <silent> <F10> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle Paste
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set pastetoggle=<f5>
+
+"--------------------------------------------------------------------------
+" Map & for complete repeat of substitute
+"--------------------------------------------------------------------------
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 
 
 set diffexpr=MyDiff()
@@ -249,10 +262,10 @@ nnoremap <F9> :UpdateTags<CR>
  "                             let g:airline_symbols.branch = '?'
  "                               let g:airline_symbols.readonly = '?'
  
- "--------------------------------------------------------------------------
- "intend guides
- "--------------------------------------------------------------------------
- " 随 vim 自启动
+"--------------------------------------------------------------------------
+"intend guides
+"--------------------------------------------------------------------------
+" 随 vim 自启动
 let g:indent_guides_enable_on_vim_startup=1
 " 从第二层开始可视化显示缩进
 let g:indent_guides_start_level=2
@@ -260,3 +273,10 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 " 快捷键 i 开/关缩进可视化
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+"--------------------------------------------------------------------------
+"Visual star search
+"--------------------------------------------------------------------------
+" use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
+nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
+vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
