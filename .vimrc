@@ -30,6 +30,7 @@ Plugin 'Peeja/vim-cdo'
 Plugin 'godlygeek/tabular'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'tpope/vim-abolish'
+Plugin 'wesleyche/SrcExpl'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -189,6 +190,8 @@ if executable('ag')
     " Use caching
     let g:ctrlp_use_caching = 1
 endif
+"CtrlP for Tag
+nnoremap <F4> :CtrlPTag<cr>
 
 "--------------------------------------------------------------------------
 "NERD Tree config
@@ -227,6 +230,14 @@ nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
 nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+
+"Browsing location list
+nnoremap <F3> :lnext<cr>
+nnoremap <s-F3> :lprev<cr>
+
+"Browsing quickfix list
+nnoremap <F2> :cnext<cr>
+nnoremap <s-F2> :cprev<cr>
 
 "--------------------------------------------------------------------------
 "easy tag config
@@ -280,3 +291,50 @@ let g:indent_guides_guide_size=1
 " use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
 nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
 vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
+
+"--------------------------------------------------------------------------
+"Src Exp
+"--------------------------------------------------------------------------
+" // The switch of the Source Explorer 
+nmap <F6> :SrcExplToggle<CR> 
+
+" // Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 8 
+
+" // Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100 
+
+" // Set "Enter" key to jump into the exact definition context 
+let g:SrcExpl_jumpKey = "<ENTER>" 
+
+" // Set "Space" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<SPACE>" 
+
+" // In order to avoid conflicts, the Source Explorer should know what plugins
+" // except itself are using buffers. And you need add their buffer names into
+" // below listaccording to the command ":buffers!"
+let g:SrcExpl_pluginList = [ 
+        \ "__Tagbar__", 
+        \ "NERD_tree_1" 
+    \ ] 
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+" // create/update the tags file 
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+
+" // Set "<F12>" key for updating the tags file artificially 
+"let g:SrcExpl_updateTagsKey = "<F12>" 
+
+" // Set "<F3>" key for displaying the previous definition in the jump list 
+"let g:SrcExpl_prevDefKey = "<F3>" 
+
+" // Set "<F4>" key for displaying the next definition in the jump list 
+"let g:SrcExpl_nextDefKey = "<F4>" 
