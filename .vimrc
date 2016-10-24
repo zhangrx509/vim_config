@@ -81,6 +81,11 @@ noremap <Leader>P "*P
 " window command map
 nnoremap <Leader>w <C-w>
 
+"command completion
+set wildmenu
+set wildmode=longest:full,full
+
+
 set hidden              " Allow switching away from a changed buffer without saving it
 set showmatch           " Show matching brackets.
 set incsearch           " Incremental search
