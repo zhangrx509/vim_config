@@ -250,9 +250,25 @@ nnoremap <s-F2> :cprev<cr>
 set cst
 
 "--------------------------------------------------------------------------
+"gtags config
+"--------------------------------------------------------------------------
+":set cscopeprg=gtags-cscope
+
+"--------------------------------------------------------------------------
+"vim session config
+"--------------------------------------------------------------------------
+" Persist options tags
+let g:session_persist_globals = ['&tags']
+
+"--------------------------------------------------------------------------
 "easy tag config
 "--------------------------------------------------------------------------
 nnoremap <F9> :UpdateTags<CR>
+" use project specific tags file, if not found create one
+let g:easytags_dynamic_files = 2
+" disable auto update and highlight
+let g:easytags_auto_update = 0
+let g:easytags_auto_highlight = 0
 
 "--------------------------------------------------------------------------
 "vim-airline
