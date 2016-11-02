@@ -20,6 +20,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-shell'
 Plugin 'rking/ag.vim'
 " Plugin 'ervandew/ag'
 Plugin 'majutsushi/tagbar'
@@ -250,9 +251,19 @@ nnoremap <s-F2> :cprev<cr>
 set cst
 
 "--------------------------------------------------------------------------
+"vim session config
+"--------------------------------------------------------------------------
+" Persist option tags.
+let g:session_persist_globals = ['&tags']
+
+"--------------------------------------------------------------------------
 "easy tag config
 "--------------------------------------------------------------------------
 nnoremap <F9> :UpdateTags<CR>
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+"let g:easytags_auto_update = 0
+let g:easytags_auto_highlight = 0
 
 "--------------------------------------------------------------------------
 "vim-airline
@@ -306,7 +317,7 @@ vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('gr
 "Src Exp
 "--------------------------------------------------------------------------
 " // The switch of the Source Explorer 
-nmap <F6> :SrcExplToggle<CR> 
+nnoremap <F6> :SrcExplToggle<CR> 
 
 " // Set the height of Source Explorer window 
 let g:SrcExpl_winHeight = 8 
