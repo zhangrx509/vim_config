@@ -13,12 +13,13 @@ Plugin 'VundleVim/Vundle.vim'
 " " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
 " " plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 Plugin 'rking/ag.vim'
 " Plugin 'ervandew/ag'
 Plugin 'majutsushi/tagbar'
@@ -244,6 +245,9 @@ nnoremap <s-F3> :lprev<cr>
 "Browsing quickfix list
 nnoremap <F2> :cnext<cr>
 nnoremap <s-F2> :cprev<cr>
+
+" Set cscope for tags
+set cst
 
 "--------------------------------------------------------------------------
 "easy tag config
