@@ -211,7 +211,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos="left"
 " Automatically open a NERDTree if no files where specified
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open a NERDTree
@@ -221,7 +221,7 @@ nmap <F7> :NERDTreeToggle<cr>
 "cscove config
 "--------------------------------------------------------------------------
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
+"nnoremap <leader>l :call ToggleLocationList()<CR>
 " s: Find this C symbol
 nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
 " g: Find this definition
@@ -246,6 +246,37 @@ nnoremap <s-F3> :lprev<cr>
 "Browsing quickfix list
 nnoremap <F2> :cnext<cr>
 nnoremap <s-F2> :cprev<cr>
+
+"Function to toggle quickfix/location list
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
 
 " Set cscope for tags
 set cst
