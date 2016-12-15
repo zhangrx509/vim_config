@@ -16,6 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
@@ -71,7 +72,8 @@ behave mswin
 
 " 让配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
+" set encoding
+set encoding=utf-8
 " 定义快捷键的前缀，即<Leader>
 let mapleader="\<Space>"
 
@@ -109,7 +111,7 @@ set noeb vb t_vb=       " Disable error bell and visual bell
 au GUIEnter * set vb t_vb=
 
     set fileformat=dos
-    set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
+    "set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
     "set guifont=Ubuntu_Mono:h10:cANSI
     au GUIEnter * simalt ~x                              "Maximum the initial window, only works on Windows
 
@@ -172,11 +174,6 @@ set nofoldenable
 set nobackup
 
 colorscheme molokai
-
-"--------------------------------------------------------------------------
-"vim-airline config
-"--------------------------------------------------------------------------
-set laststatus=2
 
 "--------------------------------------------------------------------------
 "tagbar config
@@ -299,9 +296,12 @@ let g:easytags_auto_highlight = 0
 "--------------------------------------------------------------------------
 "vim-airline
 "--------------------------------------------------------------------------
+let g:airline_theme='molokai'
+set laststatus=2
 ""这个是安装字体后 必须设置此项" 
-"let g:airline_powerline_fonts = 1   
+let g:airline_powerline_fonts = 1   
 
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
 "打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
