@@ -125,6 +125,7 @@ set hlsearch
 set backspace=2
 set smarttab
 set nobackup
+set noundofile
 set nowrap
 set noeb vb t_vb=       " Disable error bell and visual bell
 au GUIEnter * set vb t_vb=
