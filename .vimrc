@@ -70,11 +70,30 @@ source $VIMRUNTIME/vimrc_example.vim
 " source $VIMRUNTIME/mswin.vim
 behave mswin
 
-" 让配置变更立即生效
+" determine OS type
+if has("win32")
+    let g:isWin=1
+elseif has("unix")
+    let g:isWin=2
+else
+    let g:isWin=0
+endif
+
+" different config for different OS
+if g:isWin == 1
+    set fileformat=dos
+    au GUIEnter * simalt ~x "Maximum the initial window, only works on Windows
+elseif g:isWin == 2
+    set fileformat=unix
+else
+    set fileformat=mac
+endif
+
+" make vimrc take effect right after saving
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " set encoding
 set encoding=utf-8
-" 定义快捷键的前缀，即<Leader>
+" define <Leader>
 let mapleader="\<Space>"
 
 " paste board shortcuts
@@ -110,10 +129,6 @@ set nowrap
 set noeb vb t_vb=       " Disable error bell and visual bell
 au GUIEnter * set vb t_vb=
 
-    set fileformat=dos
-    "set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
-    "set guifont=Ubuntu_Mono:h10:cANSI
-    au GUIEnter * simalt ~x                              "Maximum the initial window, only works on Windows
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle Menu and Toolbar
@@ -139,36 +154,10 @@ set pastetoggle=<f5>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
-
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
-" 基于缩进或语法进行代码折叠
+" use indent or syntax for fold
 "set foldmethod=indent
 set foldmethod=syntax
-" 启动 vim 时关闭折叠代码
+" launch vim with no fold
 set nofoldenable
 
 set nobackup
@@ -272,6 +261,7 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
+" map for location list and quickfix list toggle
 nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nnoremap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
 
@@ -298,43 +288,31 @@ let g:easytags_auto_highlight = 0
 "--------------------------------------------------------------------------
 let g:airline_theme='molokai'
 set laststatus=2
-""这个是安装字体后 必须设置此项" 
+" use powerline fonts
 let g:airline_powerline_fonts = 1   
 
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
-"打开tabline功能,方便查看Buffer和切换,省去了minibufexpl插件
+" use tabline for buffer status
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
 
- "设置切换Buffer快捷键"
+ " map for buffer switch
   nnoremap <C-tab> :bn<CR>
   nnoremap <C-s-tab> :bp<CR>
-" 关闭状态显示空白符号计数
+" close whitespace count
   let g:airline#extensions#whitespace#enabled = 0
   let g:airline#extensions#whitespace#symbol = '!'
- " 设置consolas字体"前面已经设置过
- "         "set guifont=Consolas\ for\ Powerline\ FixedD:h11
- "           if !exists('g:airline_symbols')
- "               let g:airline_symbols = {}
- "                 endif
- "                   " old vim-powerline symbols
- "                     let g:airline_left_sep = '?'
- "                       let g:airline_left_alt_sep = '?'
- "                         let g:airline_right_sep = '?'
- "                           let g:airline_right_alt_sep = '?'
- "                             let g:airline_symbols.branch = '?'
- "                               let g:airline_symbols.readonly = '?'
  
 "--------------------------------------------------------------------------
 "intend guides
 "--------------------------------------------------------------------------
-" 随 vim 自启动
+" enable when start up
 let g:indent_guides_enable_on_vim_startup=1
-" 从第二层开始可视化显示缩进
+" start from level 2
 let g:indent_guides_start_level=2
-" 色块宽度
+" block size
 let g:indent_guides_guide_size=1
-" 快捷键 i 开/关缩进可视化
+" map for indent guide toggle
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 "--------------------------------------------------------------------------
