@@ -102,6 +102,11 @@ noremap <Leader>Y "*Y
 noremap <Leader>p "*p
 noremap <Leader>P "*P
 
+" use line highlight for Insert mode.
+" This is useful especially in terminal.
+:autocmd InsertEnter * set cul
+:autocmd InsertLeave * set nocul
+
 " window command map
 nnoremap <Leader>w <C-w>
 
