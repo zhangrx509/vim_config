@@ -13,28 +13,35 @@ Plugin 'VundleVim/Vundle.vim'
 " " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
 " " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
 " Plugin 'Valloric/YouCompleteMe'
+" Plugin 'ervandew/ag'
+"Plugin 'Peeja/vim-cdo'
+Plugin 'bronson/vim-visual-star-search'
+Plugin 'brookhong/cscope.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'godlygeek/tabular'
+Plugin 'haya14busa/incsearch-easymotion.vim'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'majutsushi/tagbar'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'wesleyche/SrcExpl'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
-Plugin 'rking/ag.vim'
-" Plugin 'ervandew/ag'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'brookhong/cscope.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'jlanzarotta/bufexplorer'
-"Plugin 'Peeja/vim-cdo'
-Plugin 'godlygeek/tabular'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'tpope/vim-abolish'
-Plugin 'wesleyche/SrcExpl'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -231,14 +238,6 @@ nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
-"Browsing location list
-nnoremap <F3> :lnext<cr>
-nnoremap <s-F3> :lprev<cr>
-
-"Browsing quickfix list
-nnoremap <F2> :cnext<cr>
-nnoremap <s-F2> :cprev<cr>
-
 "Function to toggle quickfix/location list
 function! GetBufferList()
   redir =>buflist
@@ -302,9 +301,6 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
 
- " map for buffer switch
-  nnoremap <C-tab> :bn<CR>
-  nnoremap <C-s-tab> :bp<CR>
 " close whitespace count
   let g:airline#extensions#whitespace#enabled = 0
   let g:airline#extensions#whitespace#symbol = '!'
@@ -319,7 +315,7 @@ let g:indent_guides_start_level=2
 " block size
 let g:indent_guides_guide_size=1
 " map for indent guide toggle
-:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+":nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 "--------------------------------------------------------------------------
 "Visual star search
@@ -374,3 +370,37 @@ let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
 
 " // Set "<F4>" key for displaying the next definition in the jump list 
 "let g:SrcExpl_nextDefKey = "<F4>" 
+
+"--------------------------------------------------------------------------
+" easy motion
+"--------------------------------------------------------------------------
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" keep cursor colum JK motion
+let g:EasyMotion_startofline = 0
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+"--------------------------------------------------------------------------
+" incsearch
+"--------------------------------------------------------------------------
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<C-l>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
