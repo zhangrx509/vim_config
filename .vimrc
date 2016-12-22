@@ -44,6 +44,7 @@ Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
+Plugin 'Yggdroot/LeaderF'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
