@@ -16,6 +16,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'ervandew/ag'
 "Plugin 'Peeja/vim-cdo'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'SirVer/ultisnips'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'brookhong/cscope.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -23,6 +25,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'godlygeek/tabular'
 Plugin 'haya14busa/incsearch-easymotion.vim'
 Plugin 'haya14busa/incsearch.vim'
+Plugin 'honza/vim-snippets'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -41,9 +44,6 @@ Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -199,6 +199,8 @@ if executable('ag')
     " Use caching
     let g:ctrlp_use_caching = 1
 endif
+" set dir to repo or ancestor
+let g:ctrlp_working_path_mode = 'ra'
 "CtrlP for Tag
 nnoremap <F4> :CtrlPTag<cr>
 
@@ -435,8 +437,8 @@ endif
 "--------------------------------------------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
