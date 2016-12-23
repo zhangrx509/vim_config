@@ -337,6 +337,8 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 nmap s <Plug>(easymotion-overwin-f)
+" Jump in visual mode
+vmap s <Plug>(easymotion-s)
 " keep cursor colum JK motion
 let g:EasyMotion_startofline = 0
 " JK motions: Line motions
@@ -445,3 +447,5 @@ endif
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+" Add MySnippets directory
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
