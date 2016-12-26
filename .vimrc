@@ -18,22 +18,24 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Peeja/vim-cdo'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'Yggdroot/LeaderF'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'brookhong/cscope.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
 Plugin 'haya14busa/incsearch-easymotion.vim'
-Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'haya14busa/incsearch.vim'
 Plugin 'honza/vim-snippets'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -46,7 +48,6 @@ Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
-Plugin 'Yggdroot/LeaderF'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -121,6 +122,9 @@ noremap <Leader>P "*P
 
 " window command map
 nnoremap <Leader>w <C-w>
+
+" tab command map
+nnoremap <Leader>tn :tabnew<cr>
 
 "command completion
 set wildmenu
