@@ -31,6 +31,7 @@ Plugin 'haya14busa/incsearch.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kien/tabman.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rking/ag.vim'
@@ -184,7 +185,8 @@ set nofoldenable
 
 set nobackup
 
-colorscheme molokai
+colorscheme solarized
+set background=light
 
 "--------------------------------------------------------------------------
 "tagbar config
@@ -303,7 +305,7 @@ let g:easytags_auto_highlight = 0
 "--------------------------------------------------------------------------
 "vim-airline
 "--------------------------------------------------------------------------
-let g:airline_theme='molokai'
+let g:airline_theme='solarized'
 set laststatus=2
 " use powerline fonts
 let g:airline_powerline_fonts = 1   
@@ -473,3 +475,9 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 " Add MySnippets directory
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
+
+"--------------------------------------------------------------------------
+" Tabman
+"--------------------------------------------------------------------------
+let g:tabman_toggle = '<leader>tm'
+let g:tabman_focus  = '<leader>tf'
