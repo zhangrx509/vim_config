@@ -30,8 +30,6 @@ Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'kien/tabman.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rking/ag.vim'
@@ -126,6 +124,8 @@ nnoremap <Leader>w <C-w>
 
 " tab command map
 nnoremap <Leader>tn :tabnew<cr>
+nnoremap <Leader>tc :tabclose<cr>
+nnoremap <Leader>ts :tab split<cr>
 
 "command completion
 set wildmenu
@@ -211,7 +211,7 @@ endif
 " set dir to repo or ancestor
 let g:ctrlp_working_path_mode = 'ra'
 "CtrlP for Tag
-nnoremap <F4> :CtrlPTag<cr>
+nnoremap <leader>se :CtrlPTag<cr>
 
 "--------------------------------------------------------------------------
 "NERD Tree config
@@ -292,6 +292,8 @@ set cst
 "--------------------------------------------------------------------------
 " Persist option tags.
 let g:session_persist_globals = ['&tags']
+" opensession keymap
+nnoremap <leader>p :OpenSession<cr>
 
 "--------------------------------------------------------------------------
 "easy tag config
@@ -313,7 +315,7 @@ let g:airline_powerline_fonts = 1
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
 " use tabline for buffer status
   let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 
 " close whitespace count
   let g:airline#extensions#whitespace#enabled = 0
@@ -477,7 +479,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
 
 "--------------------------------------------------------------------------
-" Tabman
+" LeaderF
 "--------------------------------------------------------------------------
-let g:tabman_toggle = '<leader>tm'
-let g:tabman_focus  = '<leader>tf'
+nnoremap <leader>be :LeaderfBuffer<cr><C-[>
+nnoremap <leader>m :LeaderfMru<cr><C-[>
