@@ -21,6 +21,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'Yggdroot/LeaderF'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'brookhong/cscope.vim'
+"Plugin 'craigemery/vim-autotag'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'flazz/vim-colorschemes'
@@ -30,6 +31,7 @@ Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rking/ag.vim'
@@ -136,7 +138,8 @@ set hidden              " Allow switching away from a changed buffer without sav
 set showmatch           " Show matching brackets.
 set incsearch           " Incremental search
 set mouse=a             " Enable mouse usage (all modes)
-set rnu                 " Enable line number
+set nu                  " Enable line number
+set rnu                 " Enable relative line number
 set ruler               " Disaply current location of curor
 set sw=4                " Set 
 set ts=4                " Set tab to 4 space
@@ -193,7 +196,8 @@ set background=light
 "--------------------------------------------------------------------------
 let g:tagbar_width=35
 let g:tagbar_autofocus=1
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>tb :TagbarToggle<CR>
+let g:tagbar_map_showproto='a'
 
 "--------------------------------------------------------------------------
 "ctrlp config
@@ -293,7 +297,7 @@ set cst
 " Persist option tags.
 let g:session_persist_globals = ['&tags']
 " opensession keymap
-nnoremap <leader>p :OpenSession<cr>
+nnoremap <leader>os :OpenSession<cr>
 
 "--------------------------------------------------------------------------
 "easy tag config
@@ -481,5 +485,11 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
 "--------------------------------------------------------------------------
 " LeaderF
 "--------------------------------------------------------------------------
-nnoremap <leader>be :LeaderfBuffer<cr><C-[>
+"nnoremap <leader>be :LeaderfBuffer<cr><C-[>
 nnoremap <leader>m :LeaderfMru<cr><C-[>
+
+"--------------------------------------------------------------------------
+" bufexplorer
+"--------------------------------------------------------------------------
+" Do not find active buffer
+let g:bufExplorerFindActive=0
