@@ -303,9 +303,9 @@ nnoremap <leader>os :OpenSession<cr>
 "easy tag config
 "--------------------------------------------------------------------------
 nnoremap <F9> :UpdateTags<CR>
-let g:easytags_async = 1
+let g:easytags_async = 0
 let g:easytags_dynamic_files = 2
-"let g:easytags_auto_update = 0
+let g:easytags_auto_update = 1
 let g:easytags_auto_highlight = 0
 
 "--------------------------------------------------------------------------
