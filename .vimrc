@@ -198,6 +198,7 @@ set background=light
 "--------------------------------------------------------------------------
 let g:tagbar_width=35
 let g:tagbar_autofocus=1
+let g:tagbar_sort = 0
 nmap <leader>tb :TagbarToggle<CR>
 let g:tagbar_map_showproto='a'
 
@@ -236,6 +237,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 nmap <leader>n <plug>NERDTreeTabsToggle <CR>
 " Do not open nerdtree when startup
 let g:nerdtree_tabs_open_on_gui_startup = 0
+let NERDTreeShowHidden=1
 "--------------------------------------------------------------------------
 "cscove config
 "--------------------------------------------------------------------------
