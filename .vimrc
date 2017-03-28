@@ -49,10 +49,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wellle/targets.vim'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
-if has('gui_running')
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
-endif
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -306,6 +304,7 @@ set cst
 "--------------------------------------------------------------------------
 " Persist option tags.
 let g:session_persist_globals = ['&tags']
+let g:session_autoload = 'no'
 " opensession keymap
 nnoremap <leader>os :OpenSession<cr>
 
