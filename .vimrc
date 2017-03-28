@@ -17,10 +17,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ervandew/ag'
 "Plugin 'Peeja/vim-cdo'
 Plugin 'Shougo/neocomplete.vim'
-if has('gui_running')
 Plugin 'SirVer/ultisnips'
 Plugin 'Yggdroot/LeaderF'
-endif
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'brookhong/cscope.vim'
 "Plugin 'craigemery/vim-autotag'
