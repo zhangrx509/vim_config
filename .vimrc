@@ -320,7 +320,12 @@ let g:easytags_auto_highlight = 0
 "--------------------------------------------------------------------------
 "vim-airline
 "--------------------------------------------------------------------------
+if has('gui_running')
 let g:airline_theme='solarized'
+else
+let g:airline_theme='molokai'
+endif
+
 set laststatus=2
 " use powerline fonts
 let g:airline_powerline_fonts = 1   
