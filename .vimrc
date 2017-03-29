@@ -1,6 +1,15 @@
 set nocompatible
 filetype off                  " required
 
+" determine OS type
+if has("win32")
+    let g:isWin=1
+elseif has("unix")
+    let g:isWin=2
+else
+    let g:isWin=0
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -13,10 +22,13 @@ Plugin 'VundleVim/Vundle.vim'
 " " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
 " " plugin on GitHub repo
-" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'ervandew/ag'
 "Plugin 'Peeja/vim-cdo'
+if g:isWin==2
+Plugin 'Valloric/YouCompleteMe'
+else
 Plugin 'Shougo/neocomplete.vim'
+endif
 Plugin 'SirVer/ultisnips'
 Plugin 'Yggdroot/LeaderF'
 Plugin 'bronson/vim-visual-star-search'
@@ -85,15 +97,6 @@ filetype plugin indent on    " required
 source $VIMRUNTIME/vimrc_example.vim
 " source $VIMRUNTIME/mswin.vim
 behave mswin
-
-" determine OS type
-if has("win32")
-    let g:isWin=1
-elseif has("unix")
-    let g:isWin=2
-else
-    let g:isWin=0
-endif
 
 " different config for different OS
 if g:isWin == 1
