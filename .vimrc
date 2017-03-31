@@ -26,6 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Peeja/vim-cdo'
 if g:isWin==2
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 else
 Plugin 'Shougo/neocomplete.vim'
 endif
