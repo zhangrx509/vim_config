@@ -334,7 +334,12 @@ set laststatus=2
 " use powerline fonts
 let g:airline_powerline_fonts = 1   
 
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
+if has('gui_win32')
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
+else
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+endif
+
 " use tabline for buffer status
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
