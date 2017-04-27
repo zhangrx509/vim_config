@@ -1,6 +1,12 @@
 snippet head "file header" b
-/**********************************************************************
-*                             test header                             #
-**********************************************************************/
+/*
+ * `!p snip.rv = snip.fn`
+ *
+ * Copyright (c) `!p import time
+year = time.strftime("%Y", time.localtime())
+snip.rv = '{0}-{0}'.format(year)` NIO Autonomous Driving
+ * All rights reserved.
+ *
+ */
 
 endsnippet
