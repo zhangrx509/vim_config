@@ -89,3 +89,10 @@ eval "$(thefuck --alias)"
 source /opt/ros/indigo/setup.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# python virtualenv
+export WORKON_HOME=~/Envs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# zmv
+autoload zmv
