@@ -64,6 +64,7 @@ Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
+Plugin 'scrooloose/syntastic'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -426,6 +427,8 @@ noremap <silent><expr> z/ incsearch#go(<SID>config_easyfuzzymotion())
 "--------------------------------------------------------------------------
 if g:isWin!=1
 
+  " disable YCM diagnostics UI, use syntastic instead
+  let g:ycm_show_diagnostics_ui = 0
   " 自动补全配置
   set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
@@ -561,6 +564,16 @@ nnoremap <leader>m :LeaderfMru<cr><C-[>
 "--------------------------------------------------------------------------
 " Do not find active buffer
 let g:bufExplorerFindActive=0
+
+"--------------------------------------------------------------------------
+" syntastic
+"--------------------------------------------------------------------------
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
+let g:syntastic_cpp_checkers = ['cpplint', 'gcc']
+" 设置 cpplint 的错误级别阈值（默认是 5），级别低于这一设置的不会显示
+let g:syntastic_cpp_cpplint_thres = 1
+let g:syntastic_aggregate_errors = 1
 
 "--------------------------------------------------------------------------
 " vim -b : edit binary using xxd-format!
