@@ -65,6 +65,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
 Plugin 'scrooloose/syntastic'
+Plugin 'rhysd/vim-clang-format'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -574,6 +575,19 @@ let g:syntastic_cpp_checkers = ['cpplint', 'gcc']
 " 设置 cpplint 的错误级别阈值（默认是 5），级别低于这一设置的不会显示
 let g:syntastic_cpp_cpplint_thres = 1
 let g:syntastic_aggregate_errors = 1
+
+"--------------------------------------------------------------------------
+" clang format
+"--------------------------------------------------------------------------
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
 "--------------------------------------------------------------------------
 " vim -b : edit binary using xxd-format!
