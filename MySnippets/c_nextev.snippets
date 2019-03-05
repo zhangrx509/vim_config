@@ -1,12 +1,15 @@
 snippet head "file header" b
-/*
- * `!p snip.rv = snip.fn`
- *
- * Copyright (c) `!p import time
+// Copyright (c) `!p import time
 year = time.strftime("%Y", time.localtime())
-snip.rv = '{0}-{0}'.format(year)` NIO Autonomous Driving
- * All rights reserved.
- *
- */
+snip.rv = '{0}'.format(year)`, NIO Inc. All rights reserved.
+//
+// Any use, reproduction, distribution, and/or transfer of this file is strictly
+// prohibited without the express written permission of the current copyright
+// owner.
+//
+// Any licensed derivative work must retain this notice.
+//
+// `!p snip.rv = snip.fn` : ${0:Describe the main purpose of this file}
+//
 
 endsnippet
