@@ -66,6 +66,8 @@ Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-shell'
 Plugin 'scrooloose/syntastic'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'scrooloose/vim-slumlord'
+Plugin 'aklt/plantuml-syntax'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -150,7 +152,6 @@ set nu                  " Enable line number
 set rnu                 " Enable relative line number
 set ruler               " Disaply current location of curor
 set sw=4                " Set 
-set ts=4                " Set tab to 4 space
 set softtabstop=4       " Set sfot tab to 4 space
 set et                  " Expand tab
 set is
@@ -163,6 +164,8 @@ set nowrap
 set noeb vb t_vb=       " Disable error bell and visual bell
 au GUIEnter * set vb t_vb=
 
+"file type specific indent
+autocmd FileType c,cpp setlocal sw=2 softtabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle Menu and Toolbar
@@ -579,10 +582,9 @@ let g:syntastic_aggregate_errors = 1
 "--------------------------------------------------------------------------
 " clang format
 "--------------------------------------------------------------------------
+let g:clang_format#code_style = 'google'
 let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "IndentWidth" : 2,
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
