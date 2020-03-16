@@ -82,17 +82,88 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
+
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias qdb="/home/renxuan/qnx700/host/linux/x86_64/usr/bin/ntoaarch64-gdb"
 alias tmux='tmux-next -2'
+alias asimov_remote='ssh -p 33 root@10.111.3.26'
+alias lion_remote='ssh -p 23 ironman@10.111.3.26'
+alias asp='cat ~/Documents/asimov_pw | xsel'
+alias lsp='cat ~/Documents/lion_pw | xsel'
+alias asc='cat ~/Documents/asimov_pw | xsel; ssh root@172.20.1.12'
+alias lsc='cat ~/Documents/lion_pw | xsel; ssh ironman@172.20.1.1'
+alias asftp='cat ~/Documents/asimov_pw | xsel; sftp root@172.20.1.12'
+alias lsftp='cat ~/Documents/lion_pw | xsel; sftp ironman@172.20.1.1'
+alias mesftp='cat ~/Documents/me_pw | xsel; sftp NIO@ftpclient1.mobileye.com'
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+alias aup="cangen can0 -g 640 -I 505 -L 8&"
+alias adown="kill \$(ps aux | grep \"cangen can0 -g 640 -I 505 -L 8\" | awk '{print \$2}')"
+alias gerrit-restart='ssh restarter@gerrit-ad ./gerrit_restart'
+alias areset="ssh mypi '~/switch_asimov.sh r'"
+alias cat="bat"
+alias pi_eth1_reset="ssh mypi 'sudo ifconfig eth1 down;sudo ifconfig eth1 up'"
 eval "$(thefuck --alias)"
-source /opt/ros/indigo/setup.zsh
+
+function atopi() {
+  if [[ -z $2 ]]; then
+    dstip=10.111.3.192
+  else
+    dstip=$2
+  fi
+  if [[ -z $1 ]]; then
+    sudo iptables -t nat -A OUTPUT -d 172.20.1.12 -j DNAT --to-destination $dstip
+  else
+    if [[ $1 -eq 0 ]]; then
+      sudo iptables -t nat -F OUTPUT
+    else
+      sudo iptables -t nat -A OUTPUT -d 172.20.1.12 -j DNAT --to-destination $dstip
+    fi
+  fi
+}
+
+function upcan() {
+  if [[ -z $2 ]]; then
+    bitrate=500000;
+  else
+    bitrate=$2;
+  fi
+  canif=can$1
+  sudo ip link set $canif type can bitrate $bitrate
+  sudo ifconfig $canif txqueuelen 20000
+  sudo ifconfig $canif up
+}
+
+function ascp() {
+  cat ~/Documents/asimov_pw | xsel;
+  if [[ -z $2 ]]; then
+    dir=/root;
+  else
+    dir=$2;
+  fi
+  scp $1 root@172.20.1.12:$dir;
+}
+
+function lscp() {
+  cat ~/Documents/lion_pw | xsel;
+  if [[ -z $2 ]]; then
+    dir=/home/ironman;
+  else
+    dir=$2;
+  fi
+  scp $1 ironman@172.20.1.1:$dir;
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # python virtualenv
 export WORKON_HOME=~/Envs
 source /usr/local/bin/virtualenvwrapper.sh
+# qnx env
+#source ~/qnx700/qnxsdp-env-zsh.sh
 
 # zmv
 autoload zmv
+# python path
+export PYTHONPATH=/usr/local/lib/python2.7/dist-packages
+
